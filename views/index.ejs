@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=I, initial-scale=1.0">
+	<title>URL SHORTNER</title>
+	<link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+
+<body>
+	<main>
+		<h1>URLSHORTNER</h1>
+		<p>Enter the url to shorten</p>
+
+		<form action="/shorten" method="POST">
+			<label for="fullUrl"></label>
+			<input type="url" name="fullUrl" id="fullUrl">
+			<button>SHORTEN</button>
+		</form>
+
+		<% urls.forEach((url) => { %>
+			<a href="<%= url.fullUrl %>"><%= url.fullUrl %></a>
+			<a href="/<%= url.shortUrl %>"><%= url.shortUrl %></a>
+		<% }); %>
+
+	</main>
+</body>
+
+</html>
