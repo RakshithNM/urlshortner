@@ -22,15 +22,36 @@ app.get('/', async (req: Request, res: Response, next: NextFunction) => {
 });
 
 app.post('/shorten', async (req: Request, res: Response, next: NextFunction) => {
-  const url = new Url();
-  url.fullUrl = req.body.fullUrl;
-  url.shortUrl = nanoid(8);
-  await url.save();
-  res.redirect("/");
+  const { fullUrl, slug } = req.body;
+  if(fullUrl) {
+    const url = new Url();
+    url.fullUrl = fullUrl;
+    if(slug) {
+      const currentUrl = await Url.findOne({ shortUrl : slug });
+      if(!currentUrl) {
+        url.shortUrl = slug;
+      }
+      else {
+        url.shortUrl = nanoid(8);
+      }
+    }
+    else {
+      url.shortUrl = nanoid(8);
+    }
+    await url.save();
+    res.redirect("/");
+  }
+  else {
+    res.redirect("/");
+  }
 })
 
 app.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
   const currentUrl = await Url.findOne({ shortUrl : req.params.id });
+  if(!currentUrl) {
+    res.redirect("/");
+    return;
+  }
   res.redirect(currentUrl.fullUrl);
 })
 

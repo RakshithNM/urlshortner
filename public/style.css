@@ -1,3 +1,58 @@
+body {
+  margin: 0;
+  font-family: 'JetBrains Mono', monospace;
+  background-color: #011627;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  padding: 2rem;
+}
+
 h1 {
-    color: red;
+  color: red;
+}
+
+p {
+	margin-top: 0;
+	color: #80a4c2;
+}
+
+table {
+	margin-top: 2rem;
+}
+
+table > thead > tr > td {
+	outline: 1px solid white;
+	color: white;
+	padding: 1rem;
+}
+
+input {
+	padding: 1rem;
+	width: 15rem;
+}
+
+table > tbody > tr > td {
+	outline: 1px solid white;
+	padding: 1rem;
+}
+
+a {
+	color: orangered;
+}
+
+a:visited {
+	color: limegreen;
+}
+
+button {
+	padding: 1rem;
+	background-color: palevioletred;
+	outline: none;
+	border: 1 px palevioletred;
 }

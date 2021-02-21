@@ -6,24 +6,42 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=I, initial-scale=1.0">
 	<title>URL SHORTNER</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 	<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 
 <body>
 	<main>
 		<h1>URLSHORTNER</h1>
-		<p>Enter the url to shorten</p>
+		<p>Enter the url to shorten and the desired url slug</p>
 
 		<form action="/shorten" method="POST">
 			<label for="fullUrl"></label>
-			<input type="url" name="fullUrl" id="fullUrl">
+			<input type="url" name="fullUrl" id="fullUrl" placeholder="url">
+			<input type="text" name="slug" id="slug" placeholder="slug">
 			<button>SHORTEN</button>
 		</form>
-
-		<% urls.forEach((url) => { %>
-			<a href="<%= url.fullUrl %>"><%= url.fullUrl %></a>
-			<a href="/<%= url.shortUrl %>"><%= url.shortUrl %></a>
-		<% }); %>
+		<% if(urls.length>0) { %>
+			<table>
+				<thead>
+					<tr>
+						<td>FULL URL</td>
+						<td>SHORT URL</td>
+					</tr>
+				</thead>
+				<tbody>
+					<% urls.forEach((url) => { %>
+						<tr>
+							<td><a href="<%= url.fullUrl %>"><%= url.fullUrl %></a></td>
+							<td><a href="/<%= url.shortUrl %>"><%= url.shortUrl %></a></td>
+						</tr>
+					<% }); %>
+					</tr>
+				</tbody>
+			</table>
+		<% } %>
 
 	</main>
 </body>
